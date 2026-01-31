@@ -23,8 +23,8 @@ document.getElementById("form").onsubmit = async (e) => {
 e.preventDefault();
 
 let text =
-"Имя: " + name.value + "\n" +
-"Телефон: " + phone.value + "\n" +
+"Имя: " + document.getElementById("name").value + "\n" +
+"Телефон: " + document.getElementById("phone").value + "\n" +
 "Проблема: " + document.getElementById("text").value;
 
 await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
