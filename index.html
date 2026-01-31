@@ -44,7 +44,7 @@
   <input id="name" placeholder="Имя" required>
   <input id="phone" placeholder="Телефон" required>
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
-  <input type="file" id="photo" accept="image/*">
+  <input type="file" id="photo" accept="image/*" required>
   <button type="submit">Отправить</button>
 </form>
 
@@ -81,7 +81,10 @@ document.getElementById("form").addEventListener("submit", async (e) => {
       headers: { "Content-Type": "application/json" },
       body: JSON.stringify({
         chat_id: CHAT_ID,
-        text: caption
+        text:
+          "Заявка получена!\n\n" +
+          "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
+          "- ShWolt"
       })
     });
   }
