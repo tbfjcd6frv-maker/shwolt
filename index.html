@@ -40,15 +40,22 @@
 <h1>Онлайн-помощь электрика ShWolt</h1>
 <p>Опишите проблему — сообщение придёт мне в Telegram</p>
 
-<form action="https://fragrant-sky-c6a9.65gb4bvrmw.workers.dev/" method="POST">
+<form action="https://fragrant-sky-c6a9.65gb4bvrmw.workers.dev/"
+      method="POST"
+      enctype="multipart/form-data">
 
   <input type="hidden" name="chat_id" value="5601445926">
 
-  <input type="text" name="text" placeholder="Опишите проблему" required>
+  <input type="text" name="name" placeholder="Ваше имя" required>
+
+  <input type="tel" name="phone" placeholder="Телефон" required>
+
+  <textarea name="text" placeholder="Опишите проблему" required></textarea>
+
+  <input type="file" name="photo" accept="image/*">
 
   <button type="submit">Отправить</button>
 
 </form>
-
 </body>
 </html>
