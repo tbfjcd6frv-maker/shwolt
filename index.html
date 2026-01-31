@@ -1,129 +1,54 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<title>ShWolt — помощь электрика</title>
-</head>
+  <meta charset="UTF-8">
+  <title>ShWolt — помощь электрика</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<style>
-  body {
-    <form action="https://fragrant-sky-c6a9.65gb4bvrmw.workers.dev/" method="POST">
-  <input type="hidden" name="chat_id" value="5601445926">
-  <input type="text" name="text" placeholder="Опишите проблему" required>
-  <button type="submit">Отправить</button>
-</form>
-    font-family: Arial, sans-serif;
-    margin: 0;
-    padding: 16px;
-    max-width: 480px;
-    margin-left: auto;
-    margin-right: auto;
-  }
 
-  h1 {
-    font-size: 22px;
-  }
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      margin: 0;
+      padding: 16px;
+      max-width: 480px;
+      margin-left: auto;
+      margin-right: auto;
+    }
 
-  p, li {
-    font-size: 16px;
-    line-height: 1.4;
-  }
+    h1 {
+      font-size: 22px;
+    }
 
-  input, textarea, button {
-    width: 100%;
-    font-size: 16px;
-    padding: 10px;
-    margin-top: 8px;
-  }
+    input, textarea, button {
+      width: 100%;
+      font-size: 16px;
+      padding: 10px;
+      margin-top: 8px;
+    }
 
-  button {
-    background: #111;
-    color: #fff;
-    border: none;
-    border-radius: 6px;
-  }
-</style>
+    button {
+      background: #111;
+      color: #fff;
+      border: none;
+      border-radius: 6px;
+    }
+  </style>
+</head>
 
 <body>
 
 <h1>Онлайн-помощь электрика ShWolt</h1>
-<p>Опишите проблему, прикрепите фото — получите решение от профессионального электрика</p>
+<p>Опишите проблему — сообщение придёт мне в Telegram</p>
 
-<ul>
-  <li>📸 Вы отправляете фото и описание проблемы</li>
-  <li>🔧 Я анализирую ситуацию</li>
-  <li>✅ Вы получаете чёткое решение или рекомендации</li>
-</ul>
+<form action="https://fragrant-sky-c6a9.65gb4bvrmw.workers.dev/" method="POST">
 
-<p><b>ShWolt</b> — практикующий электрик. Работаю с реальными объектами, не теорией.</p>
+  <input type="hidden" name="chat_id" value="5601445926">
 
-<form id="form">
-  ...
+  <input type="text" name="text" placeholder="Опишите проблему" required>
+
+  <button type="submit">Отправить</button>
+
 </form>
 
-<script>
-  ...
-</script>
-
-</body>
-<h2>Задать вопрос электрику</h2>
-
-<form id="form">
-<input placeholder="Имя" id="name"><br><br>
-<input placeholder="Телефон" id="phone"><br><br>
-<textarea placeholder="Опишите проблему" id="text"></textarea><br><br>
-<input type="file" id="photo"><br><br>
-<button type="submit">Отправить</button>
-</form>
-
-<script>
-const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
-const CHAT_ID = "5601445926";
-
-document.getElementById("form").onsubmit = async (e) => {
-e.preventDefault();
-
-let text =
-"Имя: " + document.getElementById("name").value + "\n" +
-"Телефон: " + document.getElementById("phone").value + "\n" +
-"Проблема: " + document.getElementById("text").value;
-
-let formData = new FormData();
-
-formData.append("chat_id", CHAT_ID);
-formData.append(
-  "caption",
-  "Имя: " + document.getElementById("name").value + "\n" +
-  "Телефон: " + document.getElementById("phone").value + "\n" +
-  "Проблема: " + document.getElementById("text").value
-);
-
-let photoFile = document.getElementById("photo").files[0];
-
-if (photoFile) {
-  formData.append("photo", photoFile);
-
-  await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-    method: "POST",
-    body: formData
-  });
-} else {
-  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: {"Content-Type":"application/json"},
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text:
-        "Имя: " + document.getElementById("name").value + "\n" +
-        "Телефон: " + document.getElementById("phone").value + "\n" +
-        "Проблема: " + document.getElementById("text").value
-    })
-  });
-}
-
-
-alert("Отправлено!");
-};
-</script>
 </body>
 </html>
