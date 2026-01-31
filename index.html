@@ -2,17 +2,16 @@
 <html lang="ru">
 <head>
   <meta charset="UTF-8">
-  <title>ShWolt — помощь электрика</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>ShWolt — помощь электрика</title>
 
   <style>
     body {
       font-family: Arial, sans-serif;
-      margin: 0;
       padding: 16px;
       max-width: 480px;
-      margin-left: auto;
-      margin-right: auto;
+      margin: auto;
+      background: #f7f7f7;
     }
 
     h1 {
@@ -21,9 +20,10 @@
 
     input, textarea, button {
       width: 100%;
+      margin-top: 10px;
+      padding: 12px;
       font-size: 16px;
-      padding: 10px;
-      margin-top: 8px;
+      box-sizing: border-box;
     }
 
     button {
@@ -38,24 +38,58 @@
 <body>
 
 <h1>Онлайн-помощь электрика ShWolt</h1>
-<p>Опишите проблему — сообщение придёт мне в Telegram</p>
+<p>Опишите проблему и прикрепите фото</p>
 
-<form action="https://fragrant-sky-c6a9.65gb4bvrmw.workers.dev/"
-      method="POST"
-      enctype="multipart/form-data">
-
-  <input type="hidden" name="chat_id" value="5601445926">
-
-  <input type="text" name="name" placeholder="Ваше имя" required>
-
-  <input type="tel" name="phone" placeholder="Телефон" required>
-
-  <textarea name="text" placeholder="Опишите проблему" required></textarea>
-
-  <input type="file" name="photo" accept="image/*">
-
+<form id="form">
+  <input id="name" placeholder="Имя" required>
+  <input id="phone" placeholder="Телефон" required>
+  <textarea id="text" placeholder="Опишите проблему" required></textarea>
+  <input type="file" id="photo" accept="image/*">
   <button type="submit">Отправить</button>
-
 </form>
+
+<script>
+const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
+const CHAT_ID = "5601445926";
+
+document.getElementById("form").addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const name = document.getElementById("name").value;
+  const phone = document.getElementById("phone").value;
+  const text = document.getElementById("text").value;
+  const photo = document.getElementById("photo").files[0];
+
+  const caption =
+    "🧑 Имя: " + name + "\n" +
+    "📞 Телефон: " + phone + "\n\n" +
+    "🔧 Проблема:\n" + text;
+
+  if (photo) {
+    const formData = new FormData();
+    formData.append("chat_id", CHAT_ID);
+    formData.append("caption", caption);
+    formData.append("photo", photo);
+
+    await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
+      method: "POST",
+      body: formData
+    });
+  } else {
+    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({
+        chat_id: CHAT_ID,
+        text: caption
+      })
+    });
+  }
+
+  alert("Заявка отправлена!");
+  document.getElementById("form").reset();
+});
+</script>
+
 </body>
 </html>
