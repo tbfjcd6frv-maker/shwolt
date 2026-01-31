@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+<meta charset="UTF-8">
+<title>ShWolt — помощь электрика</title>
+</head>
+<body>
+<h2>Задать вопрос электрику</h2>
+
+<form id="form">
+<input placeholder="Имя" id="name"><br><br>
+<input placeholder="Телефон" id="phone"><br><br>
+<textarea placeholder="Опишите проблему" id="text"></textarea><br><br>
+<input type="file" id="photo"><br><br>
+<button type="submit">Отправить</button>
+</form>
+
+<script>
+const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
+const CHAT_ID = "5601445926";
+
+document.getElementById("form").onsubmit = async (e) => {
+e.preventDefault();
+
+let text =
+"Имя: " + name.value + "\n" +
+"Телефон: " + phone.value + "\n" +
+"Проблема: " + document.getElementById("text").value;
+
+await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+method: "POST",
+headers: {"Content-Type":"application/json"},
+body: JSON.stringify({
+chat_id: CHAT_ID,
+text: text
+})
+});
+
+alert("Отправлено!");
+};
+</script>
+</body>
+</html>
