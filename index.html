@@ -16,6 +16,12 @@
 
     h1 {
       font-size: 22px;
+      margin-bottom: 10px;
+    }
+
+    p {
+      font-size: 15px;
+      margin-bottom: 16px;
     }
 
     input, textarea, button {
@@ -38,7 +44,7 @@
 <body>
 
 <h1>Онлайн-помощь электрика ShWolt</h1>
-<p>Опишите проблему и прикрепите фото</p>
+<p>Опишите проблему и обязательно прикрепите фото</p>
 
 <form id="form">
   <input id="name" placeholder="Имя" required>
@@ -49,8 +55,8 @@
 </form>
 
 <script>
-const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
-const CHAT_ID = "5601445926";
+const TOKEN = "ВСТАВЬ_СЮДА_ТОКЕН";
+const CHAT_ID = "ВСТАВЬ_СЮДА_CHAT_ID";
 
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
@@ -65,29 +71,29 @@ document.getElementById("form").addEventListener("submit", async (e) => {
     "📞 Телефон: " + phone + "\n\n" +
     "🔧 Проблема:\n" + text;
 
-  if (photo) {
-    const formData = new FormData();
-    formData.append("chat_id", CHAT_ID);
-    formData.append("caption", caption);
-    formData.append("photo", photo);
+  // 1️⃣ Отправляем заявку ТЕБЕ
+  const formData = new FormData();
+  formData.append("chat_id", CHAT_ID);
+  formData.append("caption", caption);
+  formData.append("photo", photo);
 
-    await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
-      method: "POST",
-      body: formData
-    });
-  } else {
+  await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
+    method: "POST",
+    body: formData
+  });
+
+  // 2️⃣ Автоответ (подтверждение)
   await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-  method: "POST",
-  headers: { "Content-Type": "application/json" },
-  body: JSON.stringify({
-    chat_id: CHAT_ID,
-    text:
-      "✅ Заявка получена!\n\n" +
-      "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
-      "— ShWolt ⚡"
-  })
-});
-  }
+    method: "POST",
+    headers: { "Content-Type": "application/json" },
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text:
+        "✅ Заявка принята\n\n" +
+        "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
+        "— ShWolt ⚡"
+    })
+  });
 
   alert("Заявка отправлена!");
   document.getElementById("form").reset();
