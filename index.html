@@ -76,17 +76,17 @@ document.getElementById("form").addEventListener("submit", async (e) => {
       body: formData
     });
   } else {
-    await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        chat_id: CHAT_ID,
-        text:
-          "Заявка получена!\n\n" +
-          "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
-          "- ShWolt"
-      })
-    });
+  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+  method: "POST",
+  headers: { "Content-Type": "application/json" },
+  body: JSON.stringify({
+    chat_id: CHAT_ID,
+    text:
+      "✅ Заявка получена!\n\n" +
+      "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
+      "— ShWolt ⚡"
+  })
+});
   }
 
   alert("Заявка отправлена!");
