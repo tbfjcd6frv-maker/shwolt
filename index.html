@@ -27,14 +27,39 @@ let text =
 "Телефон: " + document.getElementById("phone").value + "\n" +
 "Проблема: " + document.getElementById("text").value;
 
-await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-method: "POST",
-headers: {"Content-Type":"application/json"},
-body: JSON.stringify({
-chat_id: CHAT_ID,
-text: text
-})
-});
+let formData = new FormData();
+
+formData.append("chat_id", CHAT_ID);
+formData.append(
+  "caption",
+  "Имя: " + document.getElementById("name").value + "\n" +
+  "Телефон: " + document.getElementById("phone").value + "\n" +
+  "Проблема: " + document.getElementById("text").value
+);
+
+let photoFile = document.getElementById("photo").files[0];
+
+if (photoFile) {
+  formData.append("photo", photoFile);
+
+  await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
+    method: "POST",
+    body: formData
+  });
+} else {
+  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
+    method: "POST",
+    headers: {"Content-Type":"application/json"},
+    body: JSON.stringify({
+      chat_id: CHAT_ID,
+      text:
+        "Имя: " + document.getElementById("name").value + "\n" +
+        "Телефон: " + document.getElementById("phone").value + "\n" +
+        "Проблема: " + document.getElementById("text").value
+    })
+  });
+}
+
 
 alert("Отправлено!");
 };
