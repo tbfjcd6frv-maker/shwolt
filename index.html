@@ -6,22 +6,7 @@
 <title>ShWolt — помощь электрика</title>
 
 <style>
-body 
-<body>
-
-<div class="hero">
-  <h1>⚡ Электрик онлайн</h1>
-  <p class="hero-sub">
-    Разберу вашу проблему по фото и подскажу, что делать
-  </p>
-
-  <div class="hero-price">
-    <span class="old">Выезд — 3000 ₽</span>
-    <span class="new">Онлайн сейчас — 499 ₽</span>
-  </div>
-
-  <p class="hero-status">🟢 Сейчас онлайн</p>
-</div> {
+body {
   font-family: Arial, sans-serif;
   padding: 16px;
   max-width: 480px;
@@ -41,55 +26,20 @@ input, textarea {
   border: 2px solid #e5e5e5;
   background: #fff;
   box-sizing: border-box;
-  transition: border 0.2s, box-shadow 0.2s;
-}
-
-input:focus, textarea:focus {
-  border-color: #ff9800;
-  box-shadow: 0 0 0 3px rgba(255,152,0,0.15);
-  outline: none;
 }
 
 button {
+  width: 100%;
+  padding: 18px;
+  font-size: 18px;
+  font-weight: 800;
+  border-radius: 14px;
   background: linear-gradient(135deg, #facc15, #f97316);
-  color: #111;
   border: none;
-  border-radius: 8px;
-  font-weight: bold;
+  color: #111;
 }
 
-/* PAYWALL */
-#paywall {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(0,0,0,0.85);
-  display: none;
-  align-items: center;
-  justify-content: center;
-  z-index: 9999;
-}
-
-.paywall-box {
-  background: linear-gradient(135deg, #1e293b, #020617);
-  color: white;
-  padding: 24px;
-  border-radius: 16px;
-  max-width: 360px;
-  width: 100%;
-}
-
-.paywall-box h2 {
-  margin-top: 0;
-}
-
-.paywall-box button {
-  background: linear-gradient(135deg, #22c55e, #16a34a);
-  color: #fff;
-}
-
+/* HERO */
 .hero {
   background: linear-gradient(135deg, #111827, #020617);
   color: #fff;
@@ -99,18 +49,9 @@ button {
   text-align: center;
 }
 
-.hero h1 {
-  font-size: 26px;
-  margin-bottom: 8px;
-}
-
 .hero-sub {
   font-size: 15px;
   opacity: 0.9;
-}
-
-.hero-price {
-  margin-top: 14px;
 }
 
 .hero-price .old {
@@ -132,21 +73,46 @@ button {
   font-size: 13px;
   color: #86efac;
 }
+
+/* PAYWALL */
+#paywall {
+  position: fixed;
+  inset: 0;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.paywall-box {
+  background: linear-gradient(135deg, #1e293b, #020617);
+  color: white;
+  padding: 24px;
+  border-radius: 16px;
+  max-width: 360px;
+  width: 100%;
+}
 </style>
 </head>
 
 <body>
 
-<h1>⚡ Онлайн-помощь электрика ShWolt</h1>
-<p style="font-size:14px;color:#555;">
-👋 Отвечаю лично. Не бот, не оператор, не колл-центр.
-</p>
-<ul style="font-size:14px;color:#333;margin-top:10px;">
-  <li>⚡ Практикующий электрик</li>
-  <li>🏗 Реальные объекты, не теория</li>
-  <li>📸 Разбор именно вашего фото</li>
-</ul>
-<p>Опишите проблему и прикрепите фото</p>
+<!-- HERO -->
+<div class="hero">
+  <h1>⚡ Электрик онлайн</h1>
+  <p class="hero-sub">Разберу вашу проблему по фото и подскажу, что делать</p>
+
+  <div class="hero-price">
+    <span class="old">Выезд — 3000 ₽</span>
+    <span class="new">Онлайн сейчас — 499 ₽</span>
+  </div>
+
+  <p class="hero-status">🟢 Сейчас онлайн</p>
+</div>
+
+<h1>Онлайн-помощь электрика ShWolt</h1>
+<p style="font-size:14px;color:#555;">👋 Отвечаю лично, не бот</p>
 
 <form id="form">
   <input id="name" placeholder="Имя" required>
@@ -154,77 +120,35 @@ button {
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
 
-<p style="font-size:13px;color:#2e7d32;margin-top:12px;">
-✅ Если не смогу помочь — верну деньги
-</p>
+  <p style="font-size:13px;color:#2e7d32;margin-top:12px;">
+    ✅ Если не смогу помочь — верну деньги
+  </p>
 
- <button type="submit" style="
-  width:100%;
-  padding:18px;
-  font-size:18px;
-  font-weight:800;
-  border-radius:14px;
-">
-  ⚡ Получить решение
-</button>
+  <button type="submit">⚡ Получить решение</button>
 </form>
 
 <!-- PAYWALL -->
 <div id="paywall">
   <div class="paywall-box">
-    <h2>⚡ Доступ к помощи электрика</h2>
-    <p>Я лично разберу фото и дам конкретное решение.</p>
+    <h2>⚡ Доступ к помощи</h2>
+    <p>Я лично разберу фото и дам решение</p>
 
-    <ul>
-      <li>📸 Анализ фото</li>
-      <li>🧠 Чёткий план действий</li>
-      <li>⚠️ Предупреждение об ошибках</li>
-      <li>💬 Ответ в Telegram</li>
-    </ul>
+    <p style="color:#ff6b6b;"><s>Выезд — 3000 ₽</s></p>
+    <p style="color:#22c55e;font-size:20px;font-weight:800;">
+      Онлайн сейчас — 499 ₽
+    </p>
 
-  <div style="
-  background:#0f172a;
-  border-radius:14px;
-  padding:16px;
-  margin-top:16px;
-">
+    <p style="font-size:13px;color:#86efac;">
+      ✅ Если не смогу помочь — верну деньги
+    </p>
 
-  <p style="
-    margin:0;
-    font-size:15px;
-    color:#ff4d4f;
-    font-weight:600;
-  ">
-    Выезд электрика — <s>3000 ₽</s>
-  </p>
-
-  <p style="
-    margin-top:6px;
-    font-size:20px;
-    font-weight:800;
-    color:#22c55e;
-  ">
-    Онлайн-помощь сейчас — 499 ₽
-  </p>
-
-</div>
-<p style="font-size:13px;color:#2e7d32;margin-top:12px;">
-✅ Если не смогу помочь — верну деньги
-</p>
-
-  <button onclick="sendToTelegram()" style="
-  width:100%;
-  padding:16px;
-  font-size:18px;
-  font-weight:700;
-  border-radius:14px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#fff;
-  border:none;
-  margin-top:16px;
-">
-  🔓 Получить доступ
-</button>
+    <button onclick="sendToTelegram()" style="
+      background:linear-gradient(135deg,#22c55e,#16a34a);
+      color:#fff;
+      margin-top:12px;
+    ">
+      🔓 Получить доступ
+    </button>
   </div>
 </div>
 
@@ -232,31 +156,27 @@ button {
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
 
-let formCache = {};
+let cache = {};
 
-document.getElementById("form").addEventListener("submit", (e) => {
+document.getElementById("form").onsubmit = (e) => {
   e.preventDefault();
-
-  formCache = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  text: document.getElementById("text").value,
-  photo: document.getElementById("photo").files[0]
+  cache = {
+    name: name.value,
+    phone: phone.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
+  paywall.style.display = "flex";
 };
 
-  document.getElementById("paywall").style.display = "flex";
-});
-
 async function sendToTelegram() {
-  const caption =
-    "🧑 Имя: " + formCache.name + "\n" +
-    "📞 Телефон: " + formCache.phone + "\n\n" +
-    "🔧 Проблема:\n" + formCache.text;
-
   const fd = new FormData();
   fd.append("chat_id", CHAT_ID);
-  fd.append("caption", caption);
-  fd.append("photo", formCache.photo);
+  fd.append(
+    "caption",
+    `🧑 ${cache.name}\n📞 ${cache.phone}\n\n🔧 ${cache.text}`
+  );
+  fd.append("photo", cache.photo);
 
   await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
     method: "POST",
@@ -264,8 +184,8 @@ async function sendToTelegram() {
   });
 
   alert("✅ Заявка отправлена!");
-  document.getElementById("paywall").style.display = "none";
-  document.getElementById("form").reset();
+  paywall.style.display = "none";
+  form.reset();
 }
 </script>
 
