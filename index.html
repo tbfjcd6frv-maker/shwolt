@@ -85,6 +85,10 @@ const CHAT_ID = "5601445926";
 
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
+  if (localStorage.getItem("used")) {
+  alert("⚡ Первый вопрос бесплатный.\n\nДальше — доступ по подписке.\nБез выезда и лишних трат.");
+  return;
+}localStorage.setItem("used", "true");
 
   const name = document.getElementById("name").value;
   const phone = document.getElementById("phone").value;
