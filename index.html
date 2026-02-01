@@ -192,7 +192,12 @@ async function sendToTelegram() {
   fd.append("chat_id", CHAT_ID);
   fd.append(
     "caption",
-    `🧑 ${cache.name}\n📞 ${cache.phone}\n\n🔧 ${cache.text}`
+    `🧑 Имя: ${cache.name}
+📞 Телефон: ${cache.phone}
+📲 Связь: ${cache.contact}
+
+🔧 Проблема:
+${cache.text}`
   );
   fd.append("photo", cache.photo);
 
