@@ -14,17 +14,14 @@ body {
   background: #f4f4f4;
 }
 
-h1 {
-  font-size: 22px;
-}
+h1 { font-size: 22px; }
 
-input, textarea {
+input, textarea, select {
   width: 100%;
   padding: 14px;
   font-size: 16px;
   border-radius: 12px;
   border: 2px solid #e5e5e5;
-  background: #fff;
   box-sizing: border-box;
 }
 
@@ -49,29 +46,15 @@ button {
   text-align: center;
 }
 
-.hero-sub {
-  font-size: 15px;
-  opacity: 0.9;
-}
-
 .hero-price .old {
-  display: block;
-  font-size: 14px;
   color: #ff6b6b;
   text-decoration: line-through;
 }
 
 .hero-price .new {
-  display: block;
+  color: #22c55e;
   font-size: 20px;
   font-weight: 800;
-  color: #22c55e;
-}
-
-.hero-status {
-  margin-top: 10px;
-  font-size: 13px;
-  color: #86efac;
 }
 
 /* PAYWALL */
@@ -98,179 +81,107 @@ button {
 
 <body>
 
-<!-- HERO -->
 <div class="hero">
   <h1>⚡ Электрик онлайн</h1>
-  <p class="hero-sub">Разберу вашу проблему по фото и подскажу, что делать</p>
-
+  <p>Разберу проблему по фото</p>
   <div class="hero-price">
     <span class="old">Выезд — 3000 ₽</span>
-    <span class="new">Онлайн сейчас — 499 ₽</span>
+    <span class="new">Онлайн — 499 ₽</span>
   </div>
-
-  <p class="hero-status">🟢 Сейчас онлайн</p>
 </div>
-
-<h1>Онлайн-помощь электрика ShWolt</h1>
-<p style="font-size:14px;color:#555;">👋 Отвечаю лично, не бот</p>
 
 <form id="form">
   <input id="name" placeholder="Имя" required>
   <input id="phone" placeholder="Телефон" required>
-    <label style="font-size:14px;margin-top:12px;display:block;">
-  Способ связи
-</label>
 
-<select id="contact" required style="
-  width:100%;
-  padding:14px;
-  font-size:16px;
-  border-radius:12px;
-  border:2px solid #e5e5e5;
-  margin-top:6px;
-">
-  <option value="">Выберите способ связи</option>
-  <option value="Сотовый">📱 Сотовый</option>
-  <option value="WhatsApp">💬 WhatsApp</option>
-  <option value="Telegram">✈️ Telegram</option>
-</select>
+  <label>Способ связи</label>
+  <select id="contact" required>
+    <option value="">Выберите</option>
+    <option value="Сотовый">📱 Сотовый</option>
+    <option value="WhatsApp">💬 WhatsApp</option>
+    <option value="Telegram">✈️ Telegram</option>
+  </select>
+
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
 
-  <p style="font-size:13px;color:#2e7d32;margin-top:12px;">
-    ✅ Если не смогу помочь — верну деньги
-  </p>
-<button type="button" onclick="dangerMode()" style="
-  width:100%;
-  padding:16px;
-  margin-top:12px;
-  font-size:16px;
-  font-weight:800;
-  border-radius:14px;
-  background:linear-gradient(135deg,#dc2626,#991b1b);
-  color:#fff;
-  border:none;
-">
-⚠️ ОПАСНО / ИСКРИТ / ПАХНЕТ
-</button>
+  <button type="button" onclick="dangerMode()" style="background:#dc2626;color:#fff;margin-top:10px;">
+    ⚠️ ОПАСНО / ИСКРИТ / ПАХНЕТ
+  </button>
+
   <button type="submit">⚡ Получить решение</button>
 </form>
 
 <!-- PAYWALL -->
 <div id="paywall">
   <div class="paywall-box">
-    <h2>⚡ Доступ к помощи</h2>
-    <p>Я лично разберу фото и дам решение</p>
+    <h2>Выберите формат помощи</h2>
 
-    <p style="color:#ff6b6b;"><s>Выезд — 3000 ₽</s></p>
-    <p style="color:#22c55e;font-size:20px;font-weight:800;">
-      Онлайн сейчас — 499 ₽
-    </p>
+    <select id="package" required>
+      <option value="">Выберите пакет</option>
+      <option value="🟢 Быстрый совет — 499 ₽">🟢 Быстрый совет — 499 ₽</option>
+      <option value="🔵 Разбор + схема — 999 ₽">🔵 Разбор + схема — 999 ₽</option>
+      <option value="🔴 Срочно — 1499 ₽">🔴 Срочно — 1499 ₽</option>
+    </select>
 
-    <p style="font-size:13px;color:#86efac;">
-      ✅ Если не смогу помочь — верну деньги
-    </p>
-
-   <label style="display:block;margin-top:12px;font-size:14px;">
-  Выберите формат помощи
-</label>
-
-<select id="package" required style="
-  width:100%;
-  padding:14px;
-  font-size:16px;
-  border-radius:12px;
-  border:2px solid #334155;
-  background:#020617;
-  color:#fff;
-  margin-top:6px;
-">
-  <option value="">Выберите пакет</option>
-  <option value="🟢 Быстрый совет — 499 ₽">🟢 Быстрый совет — 499 ₽</option>
-  <option value="🔵 Разбор + схема — 999 ₽">🔵 Разбор + схема — 999 ₽</option>
-  <option value="🔴 Срочно (10 минут) — 1499 ₽">🔴 Срочно (10 минут) — 1499 ₽</option>
-</select>
-
-<button type="button" onclick="sendToTelegram()" style="
-  width:100%;
-  padding:16px;
-  margin-top:14px;
-  font-size:18px;
-  font-weight:800;
-  border-radius:14px;
-  background:linear-gradient(135deg,#22c55e,#16a34a);
-  color:#fff;
-  border:none;
-">
-  🔓 Получить доступ
-</button>
+    <button onclick="sendToTelegram()" style="margin-top:14px;background:#22c55e;color:#fff;">
+      🔓 Получить доступ
+    </button>
   </div>
 </div>
-<!-- SUCCESS SCREEN -->
-<div id="success" style="
-  display:none;
-  position:fixed;
-  inset:0;
-  background:#020617;
-  color:#fff;
-  z-index:99999;
-  padding:24px;
-  text-align:center;
-">
 
-  <h2 style="margin-top:40px;">✅ Заявка принята</h2>
-
-  <p style="margin-top:16px;font-size:16px;opacity:0.9;">
-    Я уже получил вашу заявку и изучаю фото.
-  </p>
-
-  <p style="margin-top:12px;font-size:15px;">
-    ⏱ Отвечу в течение <b>10–15 минут</b>
-  </p>
-
-  <p style="margin-top:12px;font-size:14px;color:#86efac;">
-    📲 Способ связи: <b id="success-contact"></b>
-  </p>
-
-  <p style="margin-top:20px;font-size:13px;opacity:0.7;">
-    Если ситуация опасная — отключите автомат до моего ответа
-  </p>
-
+<!-- SUCCESS -->
+<div id="success" style="display:none;position:fixed;inset:0;background:#020617;color:#fff;text-align:center;padding:40px;">
+  <h2>✅ Заявка принята</h2>
+  <p>Свяжусь с вами через <b id="success-contact"></b></p>
 </div>
 
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
-let isDanger = false;
-let cache = {};
 
-document.getElementById("form").onsubmit = (e) => {
+let cache = {};
+let isDanger = false;
+
+form.onsubmit = (e) => {
   e.preventDefault();
   cache = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  contact: document.getElementById("contact").value,
-  text: document.getElementById("text").value,
-  photo: document.getElementById("photo").files[0]
-};
+    name: name.value,
+    phone: phone.value,
+    contact: contact.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
   paywall.style.display = "flex";
 };
 
-async function sendToTelegram() {
-  cache.package = document.getElementById("package").value;
-  const dangerText = isDanger ? "🚨 РЕЖИМ: ОПАСНО\n" : "";
+function dangerMode() {
+  isDanger = true;
+  paywall.style.display = "flex";
+  package.value = "🔴 Срочно — 1499 ₽";
+}
 
-fd.append(
-  "caption",
-  dangerText +
-`🧑 Имя: ${cache.name}
+async function sendToTelegram() {
+  cache.package = package.value;
+  if (!cache.package) {
+    alert("Выберите формат помощи");
+    return;
+  }
+
+  const fd = new FormData();              // ✅ ВОТ ТУТ БЫЛА ОШИБКА
+  fd.append("chat_id", CHAT_ID);          // ✅ И ЭТОГО НЕ ХВАТАЛО
+
+  fd.append(
+    "caption",
+    `${isDanger ? "🚨 ОПАСНО\n\n" : ""}🧑 Имя: ${cache.name}
 📞 Телефон: ${cache.phone}
 📲 Связь: ${cache.contact}
 💼 Пакет: ${cache.package}
 
 🔧 Проблема:
 ${cache.text}`
-);
+  );
+
   fd.append("photo", cache.photo);
 
   await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
@@ -279,15 +190,9 @@ ${cache.text}`
   });
 
   paywall.style.display = "none";
-document.getElementById("success").style.display = "block";
-document.getElementById("success-contact").innerText = cache.contact;
-form.reset();
-}
-function dangerMode() {
-  isDanger = true;
-  document.getElementById("package").value =
-    "🔴 Срочно (10 минут) — 1499 ₽";
-  document.getElementById("paywall").style.display = "flex";
+  success.style.display = "block";
+  document.getElementById("success-contact").innerText = cache.contact;
+  form.reset();
 }
 </script>
 
