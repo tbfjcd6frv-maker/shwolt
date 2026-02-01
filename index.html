@@ -87,7 +87,15 @@ button {
   <input id="phone" placeholder="Телефон" required>
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
-  <button type="submit">⚡ Получить решение</button>
+ <button type="submit" style="
+  width:100%;
+  padding:18px;
+  font-size:18px;
+  font-weight:800;
+  border-radius:14px;
+">
+  ⚡ Получить решение
+</button>
 </form>
 
 <!-- PAYWALL -->
@@ -103,22 +111,46 @@ button {
       <li>💬 Ответ в Telegram</li>
     </ul>
 
-   <div style="
-  background:#fff3e0;
-  border:1px dashed #ff9800;
-  border-radius:12px;
-  padding:12px;
-  margin-top:12px;
+  <div style="
+  background:#0f172a;
+  border-radius:14px;
+  padding:16px;
+  margin-top:16px;
 ">
-  <p style="margin:0; font-size:14px; color:#777;">
+
+  <p style="
+    margin:0;
+    font-size:15px;
+    color:#ff4d4f;
+    font-weight:600;
+  ">
     Выезд электрика — <s>3000 ₽</s>
   </p>
-  <p style="margin:4px 0 0; font-size:17px; font-weight:700;">
-    Онлайн-помощь сейчас — <span style="color:#ff9800;">499 ₽</span>
+
+  <p style="
+    margin-top:6px;
+    font-size:20px;
+    font-weight:800;
+    color:#22c55e;
+  ">
+    Онлайн-помощь сейчас — 499 ₽
   </p>
+
 </div>
 
-    <button onclick="sendToTelegram()">🔓 Получить доступ</button>
+  <button onclick="sendToTelegram()" style="
+  width:100%;
+  padding:16px;
+  font-size:18px;
+  font-weight:700;
+  border-radius:14px;
+  background:linear-gradient(135deg,#22c55e,#16a34a);
+  color:#fff;
+  border:none;
+  margin-top:16px;
+">
+  🔓 Получить доступ
+</button>
   </div>
 </div>
 
