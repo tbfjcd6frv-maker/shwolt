@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>ShWolt🔋 — помощь электрика</title>
+<title>ShWolt — помощь электрика</title>
 
 <style>
 body {
@@ -94,11 +94,11 @@ button {
   <p class="hero-status">🟢 Сейчас онлайн</p>
 </div>
 
-<h1>Онлайн-помощь электрика ShWolt</h1>
-<p style="font-size:14px;color:#555;">👋 Отвечаю лично, не бот</p>
+<h1>Онлайн-помощь электрика ShWolt🔋</h1>
+<p style="font-size:14px;color:#555;">👋 Отвечаю лично, не бот, не робот, не колл-центр</p>
 
 <form id="form">
-  <input id="name" placeholder="Имя" required>
+  <input id="name" placeholder="Ваше имя" required>
   <input id="phone" placeholder="Телефон" required>
 
   <label>Способ связи</label>
@@ -126,9 +126,9 @@ button {
 
     <select id="package" required>
       <option value="">Выберите пакет</option>
-      <option value="🟢 Быстрый совет — 499 ₽">🟢 Быстрый совет — 499 ₽</option>
-      <option value="🔵 Разбор + схема — 999 ₽">🔵 Разбор + схема — 999 ₽</option>
-      <option value="🔴 Срочно — 1499 ₽">🔴 Срочно — 1499 ₽</option>
+      <option value="🟢 Быстрый совет — 199 ₽">🟢 Быстрый совет — 199 ₽</option>
+      <option value="🔵 Разбор + схема — 499 ₽">🔵 Разбор + схема — 499 ₽</option>
+      <option value="🔴 Срочно — 999 ₽">🔴 Срочно — 999 ₽</option>
     </select>
 
     <button onclick="sendToTelegram()" style="margin-top:14px;background:#22c55e;color:#fff;">
@@ -190,7 +190,7 @@ function dangerMode() {
   }
 
   document.getElementById("package").value =
-    "🔴 Срочно (10 минут) — 1499 ₽";
+    "🔴 Срочно (10 минут) — 999 ₽";
 
   paywall.style.display = "flex";
 }
