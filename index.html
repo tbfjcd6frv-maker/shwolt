@@ -146,20 +146,24 @@ button {
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
+
+const paywall = document.getElementById("paywall");
+const success = document.getElementById("success");
+const form = document.getElementById("form");
+
 let isDanger = false;
 let cache = {};
 
-document.getElementById("form").onsubmit = (e) => {
+form.onsubmit = (e) => {
   e.preventDefault();
+
   cache = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  contact: document.getElementById("contact").value,
-  text: document.getElementById("text").value,
-  photo: document.getElementById("photo").files[0]
-};
-  paywall.style.display = "flex";
-};
+    name: name.value,
+    phone: phone.value,
+    contact: contact.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
 
   if (!cache.contact) {
     alert("Выберите способ связи");
@@ -173,11 +177,12 @@ function dangerMode() {
   isDanger = true;
 
   cache = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  text: document.getElementById("text").value,
-  photo: document.getElementById("photo").files[0]
-};
+    name: name.value,
+    phone: phone.value,
+    contact: contact.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
 
   if (!cache.contact) {
     alert("Выберите способ связи");
@@ -225,6 +230,7 @@ ${cache.text}`
   paywall.style.display = "none";
   success.style.display = "block";
   document.getElementById("success-contact").innerText = cache.contact;
+
   form.reset();
   isDanger = false;
 }
