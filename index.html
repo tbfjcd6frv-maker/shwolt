@@ -9,54 +9,72 @@
   <link rel="manifest" href="manifest.json">
   <meta name="theme-color" content="#111111">
 
-  <style>
-    body {
-      font-family: Arial, sans-serif;
-      padding: 16px;
-      max-width: 480px;
-      margin: auto;
-      background: #f7f7f7;
-    }
+<style>
+body {
+  font-family: Arial, sans-serif;
+  padding: 16px;
+  max-width: 480px;
+  margin: auto;
+  background: linear-gradient(180deg, #0f0f0f, #1c1c1c);
+  color: #fff;
+}
 
-    h1 {
-      font-size: 22px;
-      margin-bottom: 10px;
-    }
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+  color: #FFD400;
+}
 
-    p {
-      font-size: 15px;
-      margin-bottom: 16px;
-    }
+p {
+  font-size: 15px;
+  margin-bottom: 16px;
+  opacity: 0.9;
+}
 
-    input, textarea, button {
-      width: 100%;
-      margin-top: 10px;
-      padding: 12px;
-      font-size: 16px;
-      box-sizing: border-box;
-    }
+input, textarea {
+  width: 100%;
+  margin-top: 10px;
+  padding: 12px;
+  font-size: 16px;
+  border-radius: 10px;
+  border: 1px solid #ddd;
+}
 
-    button {
-      background: #111;
-      color: #fff;
-      border: none;
-      border-radius: 6px;
-    }
-  </style>
+button {
+  margin-top: 14px;
+  background: linear-gradient(135deg, #FFD400, #FF9900);
+  color: #000;
+  border: none;
+  border-radius: 12px;
+  font-weight: bold;
+  padding: 14px;
+  font-size: 16px;
+}
+
+.card {
+  background: #ffffff;
+  color: #111;
+  border-radius: 16px;
+  padding: 16px;
+  margin-bottom: 16px;
+}
+</style>
 </head>
 
 <body>
 
-<h1>Онлайн-помощь электрика ShWolt</h1>
-<p>Опишите проблему и обязательно прикрепите фото</p>
+<h1>⚡ Электрик в кармане</h1>
+<p>Фото → анализ → чёткое решение без риска</p>
 
+<div class="card">
 <form id="form">
   <input id="name" placeholder="Имя" required>
   <input id="phone" placeholder="Телефон" required>
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
-  <button type="submit">Отправить</button>
+ <button type="submit">⚡ Получить решение</button>
 </form>
+</div>
 
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
