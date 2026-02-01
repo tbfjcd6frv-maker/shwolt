@@ -147,39 +147,67 @@ button {
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
 
-let cache = {};
 let isDanger = false;
+let cache = {};
 
-form.onsubmit = (e) => {
+document.getElementById("form").onsubmit = (e) => {
   e.preventDefault();
+
   cache = {
-  name: document.getElementById("name").value,
-  phone: document.getElementById("phone").value,
-  text: document.getElementById("text").value,
-  photo: document.getElementById("photo").files[0]
-};
+    name: name.value,
+    phone: phone.value,
+    contact: contact.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
+
+  if (!cache.contact) {
+    alert("Выберите способ связи");
+    return;
+  }
+
   paywall.style.display = "flex";
 };
 
 function dangerMode() {
   isDanger = true;
-  paywall.style.display = "flex";
-  package.value = "🔴 Срочно — 1499 ₽";
-}
 
-async function sendToTelegram() {
-  cache.package = package.value;
-  if (!cache.package) {
-    alert("Выберите формат помощи");
+  cache = {
+    name: name.value,
+    phone: phone.value,
+    contact: contact.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
+
+  if (!cache.contact) {
+    alert("Выберите способ связи");
     return;
   }
 
-  const fd = new FormData();              // ✅ ВОТ ТУТ БЫЛА ОШИБКА
-  fd.append("chat_id", CHAT_ID);          // ✅ И ЭТОГО НЕ ХВАТАЛО
+  document.getElementById("package").value =
+    "🔴 Срочно (10 минут) — 1499 ₽";
+
+  paywall.style.display = "flex";
+}
+
+async function sendToTelegram() {
+  cache.package = document.getElementById("package").value;
+
+  if (!cache.package) {
+    alert("Выберите пакет помощи");
+    return;
+  }
+
+  const fd = new FormData();
+  fd.append("chat_id", CHAT_ID);
+
+  const dangerText = isDanger ? "🚨 РЕЖИМ: ОПАСНО\n" : "";
 
   fd.append(
     "caption",
-    `${isDanger ? "🚨 ОПАСНО\n\n" : ""}🧑 Имя: ${cache.name}
+`${dangerText}
+🧑 Имя: ${cache.name}
 📞 Телефон: ${cache.phone}
 📲 Связь: ${cache.contact}
 💼 Пакет: ${cache.package}
@@ -199,6 +227,7 @@ ${cache.text}`
   success.style.display = "block";
   document.getElementById("success-contact").innerText = cache.contact;
   form.reset();
+  isDanger = false;
 }
 </script>
 
