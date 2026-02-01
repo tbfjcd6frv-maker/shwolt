@@ -117,6 +117,23 @@ button {
 <form id="form">
   <input id="name" placeholder="Имя" required>
   <input id="phone" placeholder="Телефон" required>
+    <label style="font-size:14px;margin-top:12px;display:block;">
+  Способ связи
+</label>
+
+<select id="contact" required style="
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:12px;
+  border:2px solid #e5e5e5;
+  margin-top:6px;
+">
+  <option value="">Выберите способ связи</option>
+  <option value="Сотовый">📱 Сотовый</option>
+  <option value="WhatsApp">💬 WhatsApp</option>
+  <option value="Telegram">✈️ Telegram</option>
+</select>
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
 
@@ -163,6 +180,7 @@ document.getElementById("form").onsubmit = (e) => {
   cache = {
   name: document.getElementById("name").value,
   phone: document.getElementById("phone").value,
+  contact: document.getElementById("contact").value,
   text: document.getElementById("text").value,
   photo: document.getElementById("photo").files[0]
 };
