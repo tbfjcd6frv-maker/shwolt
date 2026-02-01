@@ -1,183 +1,144 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>ShWolt — помощь электрика</title>
-
-  <!-- PWA -->
-  <link rel="manifest" href="manifest.json">
-  <meta name="theme-color" content="#111111">
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ShWolt — помощь электрика</title>
 
 <style>
-* {
-  box-sizing: border-box;
-}
 body {
   font-family: Arial, sans-serif;
   padding: 16px;
   max-width: 480px;
   margin: auto;
-  background: linear-gradient(180deg, #0f0f0f, #1c1c1c);
-  color: #fff;
+  background: #f4f4f4;
 }
 
 h1 {
-  font-size: 24px;
-  margin-bottom: 10px;
-  color: #FFD400;
+  font-size: 22px;
 }
 
-p {
-  font-size: 15px;
-  margin-bottom: 16px;
-  opacity: 0.9;
-}
-
-input, textarea {
+input, textarea, button {
   width: 100%;
-  margin-top: 10px;
   padding: 12px;
+  margin-top: 10px;
   font-size: 16px;
-  border-radius: 10px;
-  border: 1px solid #ddd;
+  box-sizing: border-box;
 }
 
 button {
-  margin-top: 14px;
-  background: linear-gradient(135deg, #FFD400, #FF9900);
-  color: #000;
+  background: linear-gradient(135deg, #facc15, #f97316);
+  color: #111;
   border: none;
-  border-radius: 12px;
+  border-radius: 8px;
   font-weight: bold;
-  padding: 14px;
-  font-size: 16px;
 }
 
-.card {
-  background: #ffffff;
-  color: #111;
+/* PAYWALL */
+#paywall {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.85);
+  display: none;
+  align-items: center;
+  justify-content: center;
+  z-index: 9999;
+}
+
+.paywall-box {
+  background: linear-gradient(135deg, #1e293b, #020617);
+  color: white;
+  padding: 24px;
   border-radius: 16px;
-  padding: 16px;
-  margin-bottom: 16px;
+  max-width: 360px;
+  width: 100%;
+}
+
+.paywall-box h2 {
+  margin-top: 0;
+}
+
+.paywall-box button {
+  background: linear-gradient(135deg, #22c55e, #16a34a);
+  color: #fff;
 }
 </style>
 </head>
 
 <body>
 
-<h1>⚡ Электрик в кармане</h1>
-<p>Фото → анализ → чёткое решение без риска</p>
+<h1>⚡ Онлайн-помощь электрика ShWolt</h1>
+<p>Опишите проблему и прикрепите фото</p>
 
-<div class="card">
 <form id="form">
   <input id="name" placeholder="Имя" required>
   <input id="phone" placeholder="Телефон" required>
   <textarea id="text" placeholder="Опишите проблему" required></textarea>
   <input type="file" id="photo" accept="image/*" required>
- <button type="submit">⚡ Получить решение</button>
+  <button type="submit">⚡ Получить решение</button>
 </form>
-</div>
 
-<div id="paywall" style="
-  display:none;
-  margin-top:20px;
-  padding:24px;
-  background: linear-gradient(135deg, #0f2027, #203a43, #2c5364);
-  color:#ffffff;
-  border-radius:16px;
-  box-shadow:0 15px 35px rgba(0,0,0,0.25);
-">
+<!-- PAYWALL -->
+<div id="paywall">
+  <div class="paywall-box">
+    <h2>⚡ Доступ к помощи электрика</h2>
+    <p>Я лично разберу фото и дам конкретное решение.</p>
 
-  <h2>⚡ Доступ к помощи электрика</h2>
+    <ul>
+      <li>📸 Анализ фото</li>
+      <li>🧠 Чёткий план действий</li>
+      <li>⚠️ Предупреждение об ошибках</li>
+      <li>💬 Ответ в Telegram</li>
+    </ul>
 
-  <p>
-    Получите персональную консультацию от практикующего электрика.
-    Разберу фото, схему и дам конкретное решение.
-  </p>
+    <p><b>Стоимость: 499 ₽</b></p>
+    <p style="font-size:13px; opacity:0.7;">Выезд электрика от 3000 ₽</p>
 
-  <ul style="padding-left:18px; line-height:1.6;">
-    <li>📸 Анализ фото и видео</li>
-    <li>🧠 Чёткий план действий</li>
-    <li>⚠️ Предупреждение об ошибках</li>
-    <li>💬 Ответ в Telegram</li>
-  </ul>
-
-  <p style="font-size:18px; margin-top:12px;">
-    💳 <b>Стоимость: 499 ₽</b>
-  </p>
-
-  <button onclick="openAccess()" style="
-    margin-top:16px;
-    background: linear-gradient(135deg, #ff512f, #f09819);
-    color:#fff;
-    font-size:18px;
-    padding:14px;
-    border-radius:10px;
-    border:none;
-    width:100%;
-  ">
-    🔓 Получить доступ
-  </button>
-
+    <button onclick="sendToTelegram()">🔓 Получить доступ</button>
+  </div>
 </div>
 
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
 
-document.getElementById("form").addEventListener("submit", async (e) => {
+let formCache = {};
+
+document.getElementById("form").addEventListener("submit", (e) => {
   e.preventDefault();
-  if (localStorage.getItem("used")) {
-  document.getElementById("paywall").style.display = "block";
-return;
-}localStorage.setItem("used", "true");
 
-  const name = document.getElementById("name").value;
-  const phone = document.getElementById("phone").value;
-  const text = document.getElementById("text").value;
-  const photo = document.getElementById("photo").files[0];
+  formCache = {
+    name: name.value,
+    phone: phone.value,
+    text: text.value,
+    photo: photo.files[0]
+  };
 
+  document.getElementById("paywall").style.display = "flex";
+});
+
+async function sendToTelegram() {
   const caption =
-    "🧑 Имя: " + name + "\n" +
-    "📞 Телефон: " + phone + "\n\n" +
-    "🔧 Проблема:\n" + text;
+    "🧑 Имя: " + formCache.name + "\n" +
+    "📞 Телефон: " + formCache.phone + "\n\n" +
+    "🔧 Проблема:\n" + formCache.text;
 
-  // 1️⃣ Отправляем заявку ТЕБЕ
-  const formData = new FormData();
-  formData.append("chat_id", CHAT_ID);
-  formData.append("caption", caption);
-  formData.append("photo", photo);
+  const fd = new FormData();
+  fd.append("chat_id", CHAT_ID);
+  fd.append("caption", caption);
+  fd.append("photo", formCache.photo);
 
   await fetch(`https://api.telegram.org/bot${TOKEN}/sendPhoto`, {
     method: "POST",
-    body: formData
+    body: fd
   });
 
-  // 2️⃣ Автоответ (подтверждение)
-  await fetch(`https://api.telegram.org/bot${TOKEN}/sendMessage`, {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      chat_id: CHAT_ID,
-      text:
-        "✅ Заявка принята\n\n" +
-        "Я изучу фото и описание и отвечу вам в ближайшее время.\n\n" +
-        "— ShWolt ⚡"
-    })
-  });
-
-  document.getElementById("paywall").style.display = "block";
+  alert("✅ Заявка отправлена!");
+  document.getElementById("paywall").style.display = "none";
   document.getElementById("form").reset();
-  function openAccess() {
-  alert("Оплата будет подключена на следующем этапе 💳");
-}
-});
-</script>
-
-<script>
-if ("serviceWorker" in navigator) {
-  navigator.serviceWorker.register("service-worker.js");
 }
 </script>
 
