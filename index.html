@@ -175,12 +175,11 @@ function dangerMode() {
   isDanger = true;
 
   cache = {
-    name: name.value,
-    phone: phone.value,
-    contact: contact.value,
-    text: text.value,
-    photo: photo.files[0]
-  };
+  name: document.getElementById("name").value,
+  phone: document.getElementById("phone").value,
+  text: document.getElementById("text").value,
+  photo: document.getElementById("photo").files[0]
+};
 
   if (!cache.contact) {
     alert("Выберите способ связи");
