@@ -205,6 +205,37 @@ button {
     </button>
   </div>
 </div>
+<!-- SUCCESS SCREEN -->
+<div id="success" style="
+  display:none;
+  position:fixed;
+  inset:0;
+  background:#020617;
+  color:#fff;
+  z-index:99999;
+  padding:24px;
+  text-align:center;
+">
+
+  <h2 style="margin-top:40px;">✅ Заявка принята</h2>
+
+  <p style="margin-top:16px;font-size:16px;opacity:0.9;">
+    Я уже получил вашу заявку и изучаю фото.
+  </p>
+
+  <p style="margin-top:12px;font-size:15px;">
+    ⏱ Отвечу в течение <b>10–15 минут</b>
+  </p>
+
+  <p style="margin-top:12px;font-size:14px;color:#86efac;">
+    📲 Способ связи: <b id="success-contact"></b>
+  </p>
+
+  <p style="margin-top:20px;font-size:13px;opacity:0.7;">
+    Если ситуация опасная — отключите автомат до моего ответа
+  </p>
+
+</div>
 
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
@@ -246,9 +277,10 @@ ${cache.text}`
     body: fd
   });
 
-  alert("✅ Заявка отправлена!");
   paywall.style.display = "none";
-  form.reset();
+document.getElementById("success").style.display = "block";
+document.getElementById("success-contact").innerText = cache.contact;
+form.reset();
 }
 function dangerMode() {
   document.getElementById("package").value =
