@@ -164,6 +164,31 @@ button {
       color:#fff;
       margin-top:12px;
     ">
+    <label style="display:block;margin-top:12px;font-size:14px;">
+  Выберите формат помощи
+</label>
+
+<select id="package" required style="
+  width:100%;
+  padding:14px;
+  font-size:16px;
+  border-radius:12px;
+  border:2px solid #334155;
+  background:#020617;
+  color:#fff;
+  margin-top:6px;
+">
+  <option value="">Выберите пакет</option>
+  <option value="Быстрый совет — 499 ₽">
+    🟢 Быстрый совет — 499 ₽
+  </option>
+  <option value="Разбор + схема — 999 ₽">
+    🔵 Разбор + схема — 999 ₽
+  </option>
+  <option value="Срочно (10 минут) — 1499 ₽">
+    🔴 Срочно (10 минут) — 1499 ₽
+  </option>
+</select>
       🔓 Получить доступ
     </button>
   </div>
@@ -181,6 +206,7 @@ document.getElementById("form").onsubmit = (e) => {
   name: document.getElementById("name").value,
   phone: document.getElementById("phone").value,
   contact: document.getElementById("contact").value,
+  package: document.getElementById("package").value,
   text: document.getElementById("text").value,
   photo: document.getElementById("photo").files[0]
 };
@@ -192,9 +218,10 @@ async function sendToTelegram() {
   fd.append("chat_id", CHAT_ID);
   fd.append(
     "caption",
-    `🧑 Имя: ${cache.name}
+   `🧑 Имя: ${cache.name}
 📞 Телефон: ${cache.phone}
 📲 Связь: ${cache.contact}
+💼 Пакет: ${cache.package}
 
 🔧 Проблема:
 ${cache.text}`
