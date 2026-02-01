@@ -79,6 +79,20 @@ button {
 </form>
 </div>
 
+<div id="paywall" style="display:none; margin-top:20px; padding:16px; background:#fff; border-radius:8px;">
+  <h2>⚡ Доступ к онлайн-электрику</h2>
+  <p>
+    Проверка по фото.<br>
+    Чёткий ответ — можно или опасно.<br>
+    Экономия времени и денег.
+  </p>
+  <b>99 ₽ / месяц</b>
+  <br><br>
+  <button onclick="alert('Напиши в Telegram: Хочу доступ ShWolt')">
+    Получить доступ
+  </button>
+</div>
+
 <script>
 const TOKEN = "8415161988:AAFRk2DR3VI6cxP_Kr376nyb0mKipUloAg0";
 const CHAT_ID = "5601445926";
@@ -86,8 +100,8 @@ const CHAT_ID = "5601445926";
 document.getElementById("form").addEventListener("submit", async (e) => {
   e.preventDefault();
   if (localStorage.getItem("used")) {
-  alert("⚡ Первый вопрос бесплатный.\n\nДальше — доступ по подписке.\nБез выезда и лишних трат.");
-  return;
+  document.getElementById("paywall").style.display = "block";
+return;
 }localStorage.setItem("used", "true");
 
   const name = document.getElementById("name").value;
